@@ -22,7 +22,7 @@ module.exports=(sequelize)=>{
                 max:5
             }
         },
-        duration:{
+        duration:{ 
             type:DataTypes.STRING,
             allowNull:false,
         },
