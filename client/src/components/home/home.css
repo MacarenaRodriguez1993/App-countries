@@ -1,0 +1,19 @@
+.home{
+  background-image: url('../../assets/mundo\ 2.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  
+}
+button{
+  margin: 5px;
+  padding: 5px 12px;
+  
+}
+.countryCard{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,200px);
+  gap: 2em;
+  padding: 2em;
+  justify-content: center;
+}
