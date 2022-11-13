@@ -26,6 +26,21 @@ const CreateActivity = ()=>{
         event.target.reset();
         
     }
+    const handlerClear=()=>{
+        setFormActivity({
+            name: "",
+            difficult: 0,
+            duration: "",
+            season: "",
+            //   picture: "",
+            countries: [],
+          });
+          document.getElementById('name').value=''
+          document.getElementById("difficult").value = 0;
+          document.getElementById("duration").value = '';
+          document.getElementById("season").selectedIndex = 0;
+          document.getElementById("countries").selectedIndex = 0;
+    }
     
     const handleCountries = (event)=>{
         if(!formActivity.countries?.includes(event.target.value)){
@@ -46,10 +61,11 @@ const CreateActivity = ()=>{
     return(
         <>
             <h1 className="titleForm">Create Activity for countries</h1>
-            <Link to='/home'><button>GO HOME</button></Link>
+            <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
             <form id='formActivity' onSubmit={(event)=> onSubmit(event)}>
                 <label>Activity name </label>
                 <input 
+                    id='name'
                     type='text' 
                     name='name' 
                     placeholder="ex: senderismo" 
@@ -59,10 +75,12 @@ const CreateActivity = ()=>{
 
                 <label>Difficult </label>
                 <input 
+                    id='difficult'
                     type='range' 
                     min={1} 
                     max={5} 
                     step={1} 
+                    defaultValue={0}
                     onChange={(event)=>
                         setFormActivity({
                             ...formActivity,
@@ -73,6 +91,7 @@ const CreateActivity = ()=>{
 
                 <label>Duration  </label>
                 <input 
+                    id='duration'
                     type='text' 
                     placeholder="ex: 1 hours" 
                     onChange={(event)=>
@@ -84,7 +103,9 @@ const CreateActivity = ()=>{
                 />
 
                 <label>Season  </label>
-                <select onChange={(event)=>
+                <select 
+                    id='season'
+                    onChange={(event)=>
                         setFormActivity({
                             ...formActivity,
                             season:event.target.value
@@ -100,7 +121,10 @@ const CreateActivity = ()=>{
 
                 
                 <label>Add Countries</label>
-                <select name='countries'  onChange={(event)=>handleCountries(event)}>
+                <select 
+                    id='countries'
+                    name='countries'  
+                    onChange={(event)=>handleCountries(event)}>
                     <option value="">Select country</option>
                     {
                         allCountries?.sort((a,b)=>(a.name<b.name ? -1 :1))
@@ -113,7 +137,8 @@ const CreateActivity = ()=>{
                 </select>
                
                 <div className="button">
-                    <button type="submit">Submit</button>   
+                    <button type="submit"className="buttonSubmit" >Submit</button>   
+                    <button type="button" className="buttonClear" onClick={handlerClear}>clear</button>   
                 </div>
                 
           
