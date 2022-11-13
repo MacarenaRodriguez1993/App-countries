@@ -1,0 +1,15 @@
+.titleForm{
+    margin:   1em;
+    text-align: center;
+}
+
+form{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+label,input,select,option{
+    font-size: x-large;
+    margin: 0.3em;
+}

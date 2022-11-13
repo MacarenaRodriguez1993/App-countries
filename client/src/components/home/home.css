@@ -5,15 +5,23 @@
   height: 100vh;
   
 }
+.home_countries{
+  display: flex;
+}
+.filter{
+  width: 30%;
+  background-color: blueviolet;
+  margin-left: 0.5em;
+}
 button{
   margin: 5px;
   padding: 5px 12px;
   
 }
 .countryCard{
+  width: 70%;
   display: grid;
   grid-template-columns: repeat(auto-fill,200px);
   gap: 2em;
-  padding: 2em;
   justify-content: center;
 }

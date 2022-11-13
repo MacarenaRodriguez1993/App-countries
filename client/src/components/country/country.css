@@ -5,16 +5,21 @@
     backdrop-filter: blur(2px);
 }
 .flag{
-    /* width: 80%;
-    border-radius: 15px; */
-  
     top: 0;
     height: 40%;
     width: 60%;
     object-fit: cover;
     border-radius: 1em;
 }
+.card:hover{
+    box-shadow: 3px 3px #05181c;
+    transition: 0.5ms;
+}
 h3, img,p{
     margin: 0.2em;
     padding: 0.3em;
+}
+.click{
+    text-decoration: none;
+    color: black;
 }
