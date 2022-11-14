@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../Filter/filter.css';
 import {useDispatch} from 'react-redux';
-import {getCountryByName,getAllCountries} from '../../redux/actions/countries'
+import {getCountryByName} from '../../redux/actions/countries'
 
 
 
@@ -14,18 +14,18 @@ const Filtros = ()=>{
     })
 
     const handleChange =(event)=>{
-        if(event.target.value===''){
-            dispatch(getAllCountries())
-        }
-        setState({
-            search:event.target.value
-        });
-        dispatch(getCountryByName(event.target.value));
+       
+            setState({
+                search:event.target.value
+            });
+            dispatch(getCountryByName(event.target.value));
+  
+       
     }
     
     return(
         <>
-            <form className="formSearch" onSubmit={(e)=>e.preventDefault()}>
+            <form className="formSearch" onSubmit={e=>e.preventDefault()}>
                 <label>Search country by name</label>
                 <input 
                     type="search"

@@ -35,7 +35,7 @@ export const getCountryByName = (name)=>{
             .then(countryByName=>{
                 dispatch({
                     type:GET_COUNTRY_BY_NAME,
-                    payload:countryByName.countriesMatch
+                    payload:countryByName
                 })
             })
     }
