@@ -24,35 +24,32 @@ const getCountriesApi= async(req,res,next)=>{
             countriesDB = await Country.findAll()
         }
         return res.status(200).send(countriesDB)
-       // return res.status(200).json({quantity: countriesDB.length, countries:countriesDB})
 
     } catch (err) {
         return res.status(400).json({error :  err});
     }
 }
 
-// GET /countries?name="...":
-// Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
-// Si no existe ningún país mostrar un mensaje adecuado
 
 const getCountriesByName = async(req,res)=>{
 
     try {
         const{name}=req.query
-        console.log('estoty en by name')
-        let countriesMatch = await Country.findAll({
-            where: {
-                name:{
+        let countriesMatch;
+
+        if(name){
+            countriesMatch = await Country.findAll({
+                where: {
+                    name:{
                     [Op.substring]: `%${name}%`
-                }
-            }  
-        })
-        
-        if(countriesMatch.length!==0){
-            return res.status(200).json({countriesMatch})
+                    }
+                }  
+            })
         }else{
-            throw new Error(`Not exist Country with contains this name ${name}`)
+            countriesMatch = await Country.findAll()
         }
+
+        return res.status(200).send(countriesMatch)
         
     } catch (err) {
         return res.status(404).json({error:err.message})
