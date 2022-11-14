@@ -1,0 +1,12 @@
+.formCardCountry{
+    width: 250px;
+    border: 2px solid black;
+    margin: 0.2em;
+}
+.content{
+    text-align: center;
+}
+.imgFlag{
+    width: 80%;
+    border-radius: 10px;
+}

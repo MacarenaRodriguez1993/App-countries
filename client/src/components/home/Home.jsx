@@ -49,7 +49,7 @@ export class Home extends Component{
 }
 export const mapStateToProps = (state) =>{
     return{
-        allCountries: state.allCountries,
+        allCountries: state.countries,
     }
   }
   

@@ -2,7 +2,8 @@ import React ,{useState}from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../CreateActivity/createActivity.css'
 import {createActivity} from '../../redux/actions/activities';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import FormCardCountry from "./FormCardCountry/FormCardCountry";
 //import { useNavigate } from "react-router-dom";
 
 
@@ -24,7 +25,10 @@ const CreateActivity = ()=>{
         dispatch(createActivity(formActivity))
         alert(`Activity "${formActivity.name}" successfully created!`)
         event.target.reset();
-        
+        setFormActivity({
+            countries:[]
+        });
+        document.getElementById("countries").selectedIndex = 0;
     }
     const handlerClear=()=>{
         setFormActivity({
@@ -140,10 +144,26 @@ const CreateActivity = ()=>{
                     <button type="submit"className="buttonSubmit" >Submit</button>   
                     <button type="button" className="buttonClear" onClick={handlerClear}>clear</button>   
                 </div>
-                
-          
-      
             </form>
+
+            <div>
+                {
+                    allCountries?.filter((country)=> formActivity.countries.includes(country.id))
+                        .map(country=>{
+                            return(
+                                <FormCardCountry
+                                    key={country.id}
+                                    id={country.id}
+                                    name={country.name}
+                                    image={country.flagImage}
+                                    state={formActivity}
+                                    setState={setFormActivity}
+                                />
+                            )
+                        })
+                }
+            </div>
+
         </>
     );
 }
