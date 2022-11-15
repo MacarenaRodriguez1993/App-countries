@@ -1,7 +1,7 @@
 const {Country,Activity}=require('../db');
 const fetch = require('cross-fetch');
 const { Op } = require("sequelize");
-const axios =require('axios')
+//const axios =require('axios')
 
 const getCountriesApi= async()=>{
     try {
@@ -65,7 +65,6 @@ const getCountriesApi= async()=>{
 
 
 const findCountries = async(name)=>{
-
     try {
         // const{name}=req.query
         // let countriesMatch;
@@ -84,9 +83,10 @@ const findCountries = async(name)=>{
 
         // return res.status(200).send(countriesMatch)
         
-        let country ;
+    
+        let country;
+
         if(name){
-            console.log('nombre')
             country = await Country.findAll({ 
                 where: {
                     name:{
@@ -95,28 +95,18 @@ const findCountries = async(name)=>{
                 }
             }, {include:[Activity]})
         }else{
-            console.log('sin nombre')
             country = await Country.findAll({
-                include:{
-                    model:Activity,
-                    attributes:['name'],
-                    through: {
-                        attributes: [],
-                    },
-                }
+                include:[Activity]
+                //{
+                    //model:Activity,
+                    // attributes:['name'],
+                    // through: {
+                    //     attributes: [],
+                    // },
+                //}
             })
         }
-        return country.map((c)=>{
-            return{
-                id:c.id,
-                name:c.name,
-                flagImage:c.flagImage,
-                continent:c.continent,
-                population:c.population,
-                area:c.area,
-                activities:c.activities
-            }
-        }) 
+        return country
     } catch (err) {
         return res.status(404).json({error:err.message})
     }
@@ -124,10 +114,8 @@ const findCountries = async(name)=>{
 
 const getCountryById = async(id)=>{
     try {
-        const country =await  Country.findByPk(id,{
-            include:[{
-                model:Activity
-            }]
+        const country = await  Country.findByPk(id,{
+            include:[Activity]
         });
         return country;
     } catch (err) {

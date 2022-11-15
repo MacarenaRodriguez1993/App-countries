@@ -6,10 +6,11 @@ const  {addActivity, getActivities} = require('../controllers/activities-control
 //route post activity
 router.post('/',async(req,res)=>{
     try {
+        
         const newActivity = await addActivity(req.body);
         return res.status(201).send(newActivity)
-    } catch (error) {
-        
+    } catch (err) {
+        return res.status(400).json({error:err.message})
     }
 })
 
