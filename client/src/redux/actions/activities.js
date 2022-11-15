@@ -1,6 +1,7 @@
 //import axios from "axios";
 export const CREATE_ACTIVITY ='CREATE_ACTIVITY';
-
+export const GET_ACTIVITIES='GET_ACTIVITIES'
+export const FILTER_ACTIVITY='FILTER_ACTIVITY'
 export const createActivity = (activity) =>{
     return async function(dispatch){
          const newActivity = await fetch('http://localhost:3001/activities',{
@@ -19,3 +20,22 @@ export const createActivity = (activity) =>{
          })
     }
 }
+export const getActivities = ()=>{
+    return async function(dispatch){
+        await fetch('http://localhost:3001/activities')
+            .then(resp => resp.json())
+            .then(activity=>{
+                dispatch({
+                    type:GET_ACTIVITIES,
+                    payload:activity
+                })
+            })
+    }
+}
+
+export const filterActivity = (payload) => {
+    return {
+      type: FILTER_ACTIVITY,
+      payload,
+    };
+};

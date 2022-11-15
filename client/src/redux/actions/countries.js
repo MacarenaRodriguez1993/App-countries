@@ -1,6 +1,7 @@
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS';
 export const GET_COUNTRY_BY_NAME='GET_COUNTRY_BY_NAME;'
+export const FILTER='FILTER'
 
 export const getAllCountries = ()=>{
     return function(dispatch){
@@ -40,3 +41,10 @@ export const getCountryByName = (name)=>{
             })
     }
 }
+
+export const filter = (payload) => {
+    return {
+      type: FILTER,
+      payload,
+    };
+};

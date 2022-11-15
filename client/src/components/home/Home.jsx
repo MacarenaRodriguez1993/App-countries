@@ -1,18 +1,29 @@
 
-import React,{Component} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import '../home/home.css'
 import Country from '../../components/country/Country'
-import Filtros from '../Filter/filter'
-import{connect} from 'react-redux';
+import Filtros from '../Filter/filterByName/filter'
+import{useSelector, useDispatch} from 'react-redux';
 import {getAllCountries} from '../../redux/actions/countries'
+import {getActivities} from '../../redux/actions/activities'
+import FilterByContinent from '../Filter/filterByContinent/FilterByContinent'
+import FilterByActivity from "../Filter/filterByActivity/FilterByActivity";
+import { useEffect } from "react";
 
-export class Home extends Component{
+const  Home =()=> {
 
-    componentDidMount() {
-        this.props.getAllCountriesBy();
-    }
-    render(){ 
+    // componentDidMount() {
+    //     this.props.getAllCountriesBy();
+    //     this.props.getAllActivities();
+    // }
+    const allCountries = useSelector((state)=>state.countries)
+    const dispatch=useDispatch();
+
+    useEffect(()=>{
+        dispatch(getAllCountries());
+        dispatch(getActivities())
+    },[dispatch])
 
         return( 
             <div className="home">
@@ -25,10 +36,12 @@ export class Home extends Component{
                 <div className="home_countries">
                     <div className="filter">
                         <Filtros/>
+                        <FilterByContinent/>
+                        <FilterByActivity/>
                     </div>
                     <div className="countryCard">
                         {
-                            this.props.allCountries?.map((country)=> {
+                            allCountries?.map((country)=> {
                                 return(
                                     
                                     <Country
@@ -45,19 +58,20 @@ export class Home extends Component{
                 </div>
             </div>
         );
-    }
-}
-export const mapStateToProps = (state) =>{
-    return{
-        allCountries: state.countries,
-    }
-  }
+    
+// }
+// export const mapStateToProps = (state) =>{
+//     return{
+//         allCountries: state.countries,
+//     }
+//   }
   
-  export const mapDispatchToProps = (dispatch)=>{
-    return{
-      getAllCountriesBy : ()=> dispatch(getAllCountries())
-    }
+//   export const mapDispatchToProps = (dispatch)=>{
+//     return{
+//       getAllCountriesBy : ()=> dispatch(getAllCountries()),
+//       getAllActivities : ()=> dispatch(getActivities())
+//     }
     
   };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Home);
+  export default Home;
