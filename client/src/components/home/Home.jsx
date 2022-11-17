@@ -10,13 +10,13 @@ import {getActivities} from '../../redux/actions/activities'
 import FilterByContinent from '../Filter/filterByContinent/FilterByContinent'
 import FilterByActivity from "../Filter/filterByActivity/FilterByActivity";
 import { useEffect } from "react";
+import OrderAlphabetical from "../Order/OrderAlphabetical/OrderAlphabetical";
+import OrderPopulation from '../Order/OrderPopulation/OrderPopulation'
+import Pagination from "../Pagination/Pagination";
+
 
 const  Home =()=> {
 
-    // componentDidMount() {
-    //     this.props.getAllCountriesBy();
-    //     this.props.getAllActivities();
-    // }
     const allCountries = useSelector((state)=>state.countries)
     const dispatch=useDispatch();
 
@@ -25,23 +25,44 @@ const  Home =()=> {
         dispatch(getActivities())
     },[dispatch])
 
+    const currentPage = useSelector((state)=>state.page)
+    const  firstIndex = currentPage*10;
+    const lastIndex = firstIndex+10;
+    const countriesForPage=allCountries?.slice(firstIndex,lastIndex)
+   
         return( 
+            <>
+           
             <div className="home">
-                <Link to='/'>
-                    <button> Back</button>
-                </Link>
-                <Link to='/createActivity'>
-                    <button> Create Activity</button>
-                </Link>
-                <div className="home_countries">
-                    <div className="filter">
-                        <Filtros/>
+                <div className="navBar">
+                    <div>
+                        <Link to='/'>
+                            <button className="goBackHome"><h2>Henry Countries</h2></button>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to='/createActivity'>
+                            <button className="create"> Create Activity</button>
+                        </Link>
+                    </div>
+                   <div>
+                    <Filtros/>
+                   </div>
+                  
+                </div>
+                <div className="filter">
+                       
                         <FilterByContinent/>
                         <FilterByActivity/>
+                        <OrderAlphabetical/>
+                        <OrderPopulation/>
                     </div>
+                <div className="home_countries">
+
                     <div className="countryCard">
+                        
                         {
-                            allCountries?.map((country)=> {
+                            countriesForPage?.map((country)=> {
                                 return(
                                     
                                     <Country
@@ -56,22 +77,11 @@ const  Home =()=> {
                         }
                     </div>
                 </div>
+               
+                <Pagination allCountries={allCountries?.length}/> 
             </div>
+            </>
         );
-    
-// }
-// export const mapStateToProps = (state) =>{
-//     return{
-//         allCountries: state.countries,
-//     }
-//   }
-  
-//   export const mapDispatchToProps = (dispatch)=>{
-//     return{
-//       getAllCountriesBy : ()=> dispatch(getAllCountries()),
-//       getAllActivities : ()=> dispatch(getActivities())
-//     }
-    
   };
   
   export default Home;

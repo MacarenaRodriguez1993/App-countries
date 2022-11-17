@@ -1,7 +1,12 @@
 export const GET_ALL_COUNTRIES = 'GET_ALL_COUNTRIES';
 export const GET_COUNTRY_DETAILS = 'GET_COUNTRY_DETAILS';
 export const GET_COUNTRY_BY_NAME='GET_COUNTRY_BY_NAME;'
-export const FILTER='FILTER'
+export const FILTER='FILTER';
+export const ORDER_ALPHABETICAL='ORDER_ALPHABETICAL';
+export const ORDER_POPULATION ='ORDER_POPULATION';
+export const  PAGE_NEXT = 'PAGE_NEXT';
+export const PAGE_BACK='PAGE_BACK';
+
 
 export const getAllCountries = ()=>{
     return function(dispatch){
@@ -42,9 +47,36 @@ export const getCountryByName = (name)=>{
     }
 }
 
-export const filter = (payload) => {
+export const filter = (filtro) => {
     return {
       type: FILTER,
-      payload,
+      payload:filtro,
     };
 };
+
+export const alphabeticalOrder = (order)=>{
+    return{
+        type:ORDER_ALPHABETICAL,
+        payload:order,
+    }
+}
+
+export const populationOrder = (order) => {
+    return{
+        type:ORDER_POPULATION,
+        payload:order,
+    }
+}
+
+export const pageNext = ()=>{
+    return {
+        type:PAGE_NEXT,
+        
+    }
+}
+
+export const pageBack = ()=>{
+    return{
+        type:PAGE_BACK,
+    }
+}

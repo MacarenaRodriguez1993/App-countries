@@ -9,7 +9,7 @@ function Landing(){
             <div className="title">
                 <h1>Welcome to the world</h1>
                 <Link to='/home'>
-                    <button>Start experience</button>
+                    <button className="initial">Start experience</button>
                 </Link>
                 
             </div>

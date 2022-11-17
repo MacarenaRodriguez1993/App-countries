@@ -1,0 +1,8 @@
+.paginator{
+    text-align: center;
+    margin: 10px auto;
+    width: 35%;
+    background-color: rgba(112, 191, 191, 0.503);
+    border-radius: 1em;
+    padding: 0.3em;
+}

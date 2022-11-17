@@ -1,5 +1,12 @@
 import { CREATE_ACTIVITY } from "../actions/activities";
-import { GET_ALL_COUNTRIES,GET_COUNTRY_DETAILS,GET_COUNTRY_BY_NAME ,FILTER} from "../actions/countries";
+import { 
+    GET_ALL_COUNTRIES,
+    GET_COUNTRY_DETAILS,
+    GET_COUNTRY_BY_NAME,
+    FILTER,ORDER_ALPHABETICAL,
+    ORDER_POPULATION,PAGE_NEXT,
+    PAGE_BACK
+} from "../actions/countries";
 import {GET_ACTIVITIES,FILTER_ACTIVITY} from '../actions/activities'
 
 const initialState ={
@@ -8,7 +15,10 @@ const initialState ={
     activities:[],
     countries:[],
     filterByCountry:'ALL',
-    filterByActivity:'ALL'
+    filterByActivity:'ALL',
+    orderAlphabetical:'ALL',
+    orderPopulation:'ALL',
+    page:0,
 
 };
 
@@ -71,6 +81,64 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 countries:allCountriesByActivity
+            }
+        case ORDER_ALPHABETICAL:
+            let order=action.payload;
+            if(order==='ALL'){
+                return{
+                    ...state,
+                    countries:[...state.allCountries]
+                }
+            }
+            let countriesOrder;
+            let aux=[...state.countries]
+            if(order==='A-Z'){
+                aux.sort((a,b)=>(a.name < b.name ? -1 : 1));
+                countriesOrder = aux;
+            }
+            if(order==='Z-A'){
+                aux.sort((a,b)=>(a.name > b.name ? -1 : 1));
+                countriesOrder=aux;
+            }
+            return{
+                ...state,
+                countries:countriesOrder,
+                orderAlphabetical:order
+            }
+        case ORDER_POPULATION:
+            let orderPopulat=action.payload;
+            if(orderPopulat==='ALL'){
+                return{
+                    ...state,
+                    countries:[...state.allCountries]
+                }
+            }
+            let countriesOrderPopulation;
+            let auxPopulation=[...state.countries]
+            if(orderPopulat==='HIGH - LOW'){
+                auxPopulation.sort((a,b)=> (a.population > b.population ? -1 : 1));
+                countriesOrderPopulation=auxPopulation
+            }
+            if(orderPopulat==='LOW - HIGH'){
+                auxPopulation.sort((a,b)=>(a.population < b.population ? -1 : 1))
+                countriesOrderPopulation=auxPopulation;
+            }
+            return{
+                ...state,
+                countries:countriesOrderPopulation,
+                orderPopulation:orderPopulat,
+            }
+        case PAGE_NEXT:
+      
+            return{
+                ...state,
+                page:state.page+1
+                
+            }
+        case PAGE_BACK:
+            return{
+                ...state,
+                page:state.page-1,
             }
         default:
             return {...state}
