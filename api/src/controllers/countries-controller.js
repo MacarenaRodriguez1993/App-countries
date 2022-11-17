@@ -5,58 +5,36 @@ const { Op } = require("sequelize");
 
 const getCountriesApi= async()=>{
     try {
-        // if(req.query.name) return next();
-        // let countriesDB = await Country.findAll();
-        // if(!countriesDB.length){
-        //     const requestApi =  await fetch("https://restcountries.com/v3/all")
-        //     .then(response=>response.json())
-        //     const countries = requestApi.map(c=>{
-        //         return {
-        //             id:c.cca3,
-        //             name:c.name.common.toLowerCase(),
-        //             flagImage:c.flags[0],
-        //             continent:c.continents[0],
-        //             capital : c.capital ? c.capital[0] : 'capital does not exist',
-        //             subregion:c.subregion,
-        //             area:c.area,
-        //             population:c.population
-        //         }
-        //     })
-        //     await Country.bulkCreate(countries).then(()=>console.log('Countries data have been saved'))
-        //     countriesDB = await Country.findAll()
-        // }
-        // return res.status(200).send(countriesDB)
-        // let requestApi =  await fetch("https://restcountries.com/v3/all")
-        //     .then(response=>response.json())
-        //     const countries = requestApi.map(c=>{
-        //         return {
-        //             id:c.cca3,
-        //             name:c.name.common.toLowerCase(),
-        //             flagImage:c.flags[0],
-        //             continent:c.continents[0],
-        //             capital : c.capital ? c.capital[0] : 'capital does not exist',
-        //             subregion:c.subregion,
-        //             area:c.area,
-        //             population:c.population
-        //         }
-        //     })
-        //     await Country.bulkCreate(countries).then(()=>console.log('Countries data have been saved'))
-
-        // return res.status(200).send('success')
-
-        let requestApi = (await axios.get('https://restcountries.com/v3/all')).data
-        requestApi = await requestApi?.map(c=> Country.findOrCreate({
-            where:{
-                id:c.cca3,
-                name:c.name.common.toLowerCase(),
-                flagImage:c.flags[0],
-                continent:c.continents[0],
-                capital : c.capital ? c.capital[0] : 'capital does not exist',
-                subregion: c.subregion ? c.subregion : c.region,
-                area:c.area,
-                population:c.population
-            }
-        }));
+         let requestApi =  await fetch("https://restcountries.com/v3/all")
+            .then(resp=>resp.json())
+            const countries = requestApi.map(c=>{
+                return {
+                    id:c.cca3,
+                    name:c.name.common.toLowerCase(),
+                    flagImage:c.flags[0],
+                    continent:c.continents[0],
+                    capital : c.capital ? c.capital[0] : 'capital does not exist',
+                    subregion:c.subregion ? c.subregion : c.region,
+                    area:c.area,
+                    population:c.population
+                }
+             })
+            await Country.bulkCreate(countries).then(()=>console.log('Countries data have been saved'))
+            
+        //return res.status(200).send('success')
+        // let requestApi = (await axios.get('https://restcountries.com/v3/all')).data
+        // requestApi = await requestApi?.map(c=> Country.findOrCreate({
+        //     where:{
+        //         id:c.cca3,
+        //         name:c.name.common.toLowerCase(),
+        //         flagImage:c.flags[0],
+        //         continent:c.continents[0],
+        //         capital : c.capital ? c.capital[0] : 'capital does not exist',
+        //         subregion: c.subregion ? c.subregion : c.region,
+        //         area:c.area,
+        //         population:c.population
+        //     }
+        // }));
 
     } catch (err) {
         return res.status(400).send('error');
@@ -66,26 +44,7 @@ const getCountriesApi= async()=>{
 
 const findCountries = async(name)=>{
     try {
-        // const{name}=req.query
-        // let countriesMatch;
-
-        // if(name){
-        //     countriesMatch = await Country.findAll({
-        //         where: {
-        //             name:{
-        //             [Op.substring]: `%${name}%`
-        //             }
-        //         }  
-        //     })
-        // }else{
-        //     countriesMatch = await Country.findAll()
-        // }
-
-        // return res.status(200).send(countriesMatch)
-        
-    
         let country;
-
         if(name){
             country = await Country.findAll({ 
                 where: {
