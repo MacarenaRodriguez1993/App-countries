@@ -10,6 +10,7 @@ import FormCardCountry from "../../FormCardCountry/FormCardCountry";
 const CreateActivity = ()=>{
 
     const allCountries = useSelector((state)=>state.allCountries);
+    const dispatch = useDispatch();
     const [formActivity,setFormActivity] = useState({
         name:'',
         difficult:0,
@@ -17,9 +18,46 @@ const CreateActivity = ()=>{
         season:'',
         countries:[]
     });
-    const dispatch = useDispatch();
-    //const navigate = useNavigate();
 
+    const validationForm = (formActivity)=>{
+        let errors ={};
+        let regExp=/[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]/
+            if(!formActivity.name.trim()){
+                errors.name = 'The Name field is required'
+            }else if(!regExp.test(formActivity.name.trim())){
+                errors.name = 'The name field does not receive special characters'
+            }
+
+            if(parseInt(formActivity.difficult)===0){
+                errors.difficult = 'The difficulty must be from 1 to 5'
+            }
+
+            if(!formActivity.duration){
+                errors.duration = 'The duration field is required'
+            }
+
+            if( formActivity.season===''){
+               errors.season= 'You must enter a station'
+            }else if( formActivity.season==='Select Season'){
+                errors.season= 'You must enter a station'
+             }
+
+        return errors;
+    }
+
+    const handleChange = (e)=>{
+        const{name,value}=e.target;
+        setFormActivity({
+            ...formActivity,
+            [name]:value
+        })
+    }
+    const [error, setError] = useState({});
+    const handlerBlur = (e)=>{
+        handleChange(e);
+        setError(validationForm(formActivity))
+    }
+    
     const onSubmit = (event) =>{
         event.preventDefault();
         dispatch(createActivity(formActivity))
@@ -36,7 +74,6 @@ const CreateActivity = ()=>{
             difficult: 0,
             duration: "",
             season: "",
-            //   picture: "",
             countries: [],
           });
           document.getElementById('name').value=''
@@ -55,13 +92,6 @@ const CreateActivity = ()=>{
         }
     }
 
-    const handleInput=(event)=>{
-        setFormActivity({
-            ...formActivity,
-            [event.target.name]:event.target.value
-        })
-    }
-
     return(
         <div className="home">
             <h3 className="titleActivities">Create Activity for countries</h3>
@@ -72,62 +102,78 @@ const CreateActivity = ()=>{
                     id='name'
                     type='text' 
                     name='name' 
+                    value={formActivity.name}
                     placeholder="ex: senderismo" 
                     maxLength={25} 
-                    onChange={(event)=>handleInput(event)}
+                    onChange={(event)=>handleChange(event)}
+                    onBlur={handlerBlur}
+                    required
                 />
+                <div className="msjError" >
+                   {
+                    error.name && <p>{error.name}</p>
+                   }
+                </div>
 
                 <label>Difficult </label>
                 <input 
                     id='difficult'
                     type='range' 
+                    name='difficult' 
+                    value={formActivity.difficult}
                     min={1} 
                     max={5} 
                     step={1} 
                     defaultValue={0}
-                    onChange={(event)=>
-                        setFormActivity({
-                            ...formActivity,
-                            difficult:parseInt(event.target.value)
-                        })
-                    }
+                    onBlur={handlerBlur}
+                    onChange={handleChange}
                 />
+                <div className="msjError" >
+                   {
+                    error.difficult && <p>{error.difficult}</p>
+                   }
+                </div>
 
-                <label>Duration  </label>
+                <label>Duration </label>
                 <input 
                     id='duration'
                     type='text' 
+                    name='duration'
                     placeholder="ex: 1 hours" 
-                    onChange={(event)=>
-                        setFormActivity({
-                            ...formActivity,
-                            duration:event.target.value
-                        })
-                    }
+                    value={formActivity.duration}
+                    onBlur={handlerBlur}
+                    onChange={handleChange}
                 />
+                <div className="msjError" >
+                   {
+                    error.duration && <p>{error.duration}</p>
+                   }
+                </div>
 
                 <label>Season  </label>
                 <select 
                     id='season'
-                    onChange={(event)=>
-                        setFormActivity({
-                            ...formActivity,
-                            season:event.target.value
-                        })
-                        
-                    }>
+                    name="season"
+                    value={formActivity.season}
+                    onBlur={handlerBlur}
+                    onChange={handleChange}>
                     <option value="Select Season">Select Season</option>
                     <option value='summer'>Summer</option>
                     <option value='autumn'>Autumn</option>
                     <option value='winter'>Winter</option>
                     <option value='spring'>Spring</option>
                 </select> 
-
+                <div className="msjError" >
+                   {
+                    error.season && <p>{error.season}</p>
+                   }
+                </div>
                 
                 <label>Add Countries</label>
                 <select 
                     id='countries'
                     name='countries'  
+                    value={formActivity.countries}
                     onChange={(event)=>handleCountries(event)}>
                     <option value="">Select country</option>
                     {

@@ -25,10 +25,19 @@ label,input,select,option{
     margin-left:7em ;
     margin-top: 0.5em;
 }
-.button{
+.buttonSubmit{
     margin: auto;
+    background-color: aquamarine;
 }
 
 .buttonClear{
     background-color: rgb(15, 93, 54);
+}
+.msjError{
+    background-color: rgba(221, 26, 26, 0.616);
+    color: white;
+    text-align: center;
+    font-size: large;
+    width: 100%;
+    border-radius: 1em;
 }
