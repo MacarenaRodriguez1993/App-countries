@@ -1,0 +1,13 @@
+.tableActivities{
+    width: 90%;
+    border: 2px solid #0F1140;
+    color: #D6D9C1;
+    margin:  1em auto;
+    font-size: larger;
+}
+thead{
+    background-color: #0f1140b1;
+}
+th{
+    border: 2px solid #0F1140;
+}

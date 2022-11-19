@@ -1,0 +1,49 @@
+.prueba{
+    background-color: coral;
+    height: 100vh;
+}
+.page{
+   display: flex; 
+   justify-content: space-around;
+   width: 90%;
+}
+.buttonBack{
+    background-color: rgb(151, 20, 20);
+    padding: 0.2em 0.6em;
+    font-size: larger;
+    margin-top: 2em;
+}
+.countryDetails{
+    width: 60%;
+    border: 2px solid black;
+    margin: 1em;
+    text-align: center;
+}
+.flagImg{
+    width: 30%;
+    border-radius: 1em;
+}
+.activities{
+    width: 40%;
+    border: 2px solid black;
+    margin: 1em;
+    text-align: center;
+}
+.cardActivities{
+    width: 50%;
+    border: 2px solid black;
+    margin: 0.2em;
+    padding: 0;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.closed{
+    border: 2 solid black;
+    width: 10%;
+    font-size: small;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+}

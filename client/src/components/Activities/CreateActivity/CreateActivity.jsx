@@ -1,10 +1,10 @@
 import React ,{useState}from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../CreateActivity/createActivity.css'
-import {createActivity} from '../../redux/actions/activities';
+import {createActivity} from '../../../redux/actions/activities';
 import {Link} from 'react-router-dom';
-import FormCardCountry from "./FormCardCountry/FormCardCountry";
-//import { useNavigate } from "react-router-dom";
+import FormCardCountry from "../../FormCardCountry/FormCardCountry";
+
 
 
 const CreateActivity = ()=>{
@@ -63,8 +63,8 @@ const CreateActivity = ()=>{
     }
 
     return(
-        <>
-            <h1 className="titleForm">Create Activity for countries</h1>
+        <div className="home">
+            <h3 className="titleActivities">Create Activity for countries</h3>
             <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
             <form id='formActivity' onSubmit={(event)=> onSubmit(event)}>
                 <label>Activity name </label>
@@ -164,7 +164,7 @@ const CreateActivity = ()=>{
                 }
             </div>
 
-        </>
+        </div>
     );
 }
 

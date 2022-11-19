@@ -33,19 +33,21 @@ const FilterByContinent = ()=>{
 
     return(
         <>
-            <label>Filter by continent</label>
-            <select id="continent" onChange={(event)=> handleChange(event)} >
-                <option value="ALL">All</option>
-                {
-                    continents.map((continent,i)=>{
-                        return(
-                            <option key={i} value={continent}>
-                                {continent}
-                            </option>
-                        )
-                    })
-                }
-            </select>
+            <label>Filter by Continent
+                <select id="continent" onChange={(event)=> handleChange(event)} >
+                    <option value="ALL">All</option>
+                    {
+                        continents.map((continent,i)=>{
+                            return(
+                                <option key={i} value={continent}>
+                                    {continent}
+                                </option>
+                            )
+                        })
+                    }
+                </select>
+            </label>
+           
         </>
     );
 }

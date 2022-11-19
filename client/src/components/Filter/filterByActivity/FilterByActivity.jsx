@@ -30,7 +30,7 @@ const FilterByActivity = ()=>{
     }
     return(
         <>
-            <label> Filter by Activity</label>
+            <label>Filter by Activity
             <select id="activity" onChange={(event)=> handleChange(event)} >
                 <option value="ALL">All</option>
                 {
@@ -43,6 +43,8 @@ const FilterByActivity = ()=>{
                     })
                 }
             </select>
+            </label>
+         
         </>
     );
 }

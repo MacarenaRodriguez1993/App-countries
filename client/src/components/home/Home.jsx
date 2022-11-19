@@ -25,6 +25,12 @@ const  Home =()=> {
         dispatch(getActivities())
     },[dispatch])
 
+    const openActivities = ()=>{
+        const a = document.getElementById('bubble');
+        a.style.display='grid'
+        a.style.position='absolute'
+    }
+
     const currentPage = useSelector((state)=>state.page)
     const  firstIndex = currentPage*10;
     const lastIndex = firstIndex+10;
@@ -40,23 +46,29 @@ const  Home =()=> {
                             <button className="goBackHome"><h2>Henry Countries</h2></button>
                         </Link>
                     </div>
-                    <div>
-                        <Link to='/createActivity'>
-                            <button className="create"> Create Activity</button>
-                        </Link>
-                    </div>
                    <div>
                     <Filtros/>
                    </div>
                   
                 </div>
+                
                 <div className="filter">
-                       
-                        <FilterByContinent/>
-                        <FilterByActivity/>
-                        <OrderAlphabetical/>
-                        <OrderPopulation/>
+                    <FilterByContinent/>
+                    <FilterByActivity/>
+                    <OrderAlphabetical/>
+                    <OrderPopulation/>
+                    <div className="activ">
+                        <button className="butActiv" onClick={openActivities}>Activities</button>
+                        <div className="bubble" id='bubble'>
+                            <Link to='/showActivities'>
+                                <button className="createOrShow">Show activities</button>
+                            </Link>
+                            <Link to='/createActivity'>
+                                <button className="createOrShow"> Create Activity</button>
+                            </Link>
+                        </div>
                     </div>
+                </div>
                 <div className="home_countries">
 
                     <div className="countryCard">

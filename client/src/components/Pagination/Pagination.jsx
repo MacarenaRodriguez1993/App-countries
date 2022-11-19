@@ -7,21 +7,21 @@ import{pageNext,pageBack} from '../../redux/actions/countries';
 const Pagination = ({allCountries}) =>{
     const dispatch =useDispatch();
     const page=useSelector((state)=> state.page)
-    const numberPage=(allCountries/10)
+    const numberPage=Math.ceil(allCountries/10)
 
     const handleNext =()=>{
-        dispatch(pageNext())
+        if(page+1 !==numberPage) dispatch(pageNext())
     }
     const handleBack = () =>{
-        dispatch(pageBack())
+        if(page+1!==1)  dispatch(pageBack())
     }
     return(
         <div className="paginator">
-            <button onClick={handleBack}>←back</button>
+            <button className="pageButton" onClick={handleBack} >←back</button>
                 {
                     `Page ${page+1} by ${numberPage}`
                 }
-            <button onClick={handleNext}>next→</button>
+            <button className="pageButton" onClick={handleNext}>next→</button>
         </div>
     )
 }

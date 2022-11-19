@@ -5,7 +5,8 @@ import {Route} from 'react-router-dom';
 import Landing from './components/Landing/Landing';
 import Home from './components/home/Home';
 import CountryDetails from './components/countryDetails/countryDetails';
-import CreateActivity from './components/CreateActivity/CreateActivity';
+import CreateActivity from './components/Activities/CreateActivity/CreateActivity';
+import ShowActivities from './components/Activities/ShowActivities/ShowActivities'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path='/home' component={Home}/>
       <Route path='/countryDatails/:id' component={CountryDetails}/>
       <Route path='/createActivity' component={CreateActivity} />
+      <Route path='/showActivities' component={ShowActivities} />
     </div>
   );
 }

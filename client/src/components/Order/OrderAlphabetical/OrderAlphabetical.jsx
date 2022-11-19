@@ -13,12 +13,14 @@ const OrderAlphabetical = () =>{
 
     return(
         <>
-            <label>Order Alphabetical</label>
+            <label>Order Alphabetical
             <select id='orderAlphabetical' onChange={e=>handleOrder(e)}>
                 <option value='ALL'>None</option>
                 <option value='A-Z'>A-Z</option>
                 <option value='Z-A'>Z-A</option>
             </select>
+            </label>
+           
         </>
     )
 }

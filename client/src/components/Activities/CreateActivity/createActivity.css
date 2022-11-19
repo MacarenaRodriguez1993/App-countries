@@ -1,7 +1,11 @@
-.titleForm{
-    margin-top:1em;
+.titleActivities{
+    margin: 0;
+    padding-top:0.4em;
+    font-size: xx-large;
     margin-bottom: 0;
     text-align: center;
+    color:#F2F2F2;
+    background-color: #0F1140;
 }
 
 form{
@@ -11,7 +15,7 @@ form{
     flex-direction: column;
 }
 label,input,select,option{
-    font-size: x-large;
+    font-size: large;
     margin: 0.3em;
 }
 .buttonBack{
@@ -19,6 +23,7 @@ label,input,select,option{
     padding: 0.2em 0.6em;
     font-size: larger;
     margin-left:7em ;
+    margin-top: 0.5em;
 }
 .button{
     margin: auto;

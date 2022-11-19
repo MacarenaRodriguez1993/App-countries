@@ -10,12 +10,14 @@ const OrderPopulation = ()=>{
     }
     return(
         <>
-            <label> Order Population </label>
-            <select id='orderPopulation' onChange={e=>handleOrder(e)}>
-                <option value="ALL">None</option>
-                <option value="HIGH - LOW">High - Low</option>
-                <option value="LOW - HIGH">Low - High</option>
-            </select>
+            <label> Order Population 
+                <select id='orderPopulation' onChange={e=>handleOrder(e)}>
+                    <option value="ALL">None</option>
+                    <option value="HIGH - LOW">High-Low</option>
+                    <option value="LOW - HIGH">Low-High</option>
+                </select>
+            </label>
+            
         </>
     )
 }
