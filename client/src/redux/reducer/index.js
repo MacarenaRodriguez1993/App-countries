@@ -65,6 +65,7 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 countries:allCountries,
+                page:0
             }
         case FILTER_ACTIVITY:
             let filterByActivity=action.payload;
@@ -80,7 +81,8 @@ const rootReducer = (state = initialState, action)=>{
             }
             return{
                 ...state,
-                countries:allCountriesByActivity
+                countries:allCountriesByActivity,
+                page:0
             }
         case ORDER_ALPHABETICAL:
             let order=action.payload;
@@ -103,7 +105,8 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 countries:countriesOrder,
-                orderAlphabetical:order
+                orderAlphabetical:order,
+                page:0
             }
         case ORDER_POPULATION:
             let orderPopulat=action.payload;
@@ -117,7 +120,8 @@ const rootReducer = (state = initialState, action)=>{
             let auxPopulation=[...state.countries]
             if(orderPopulat==='HIGH - LOW'){
                 auxPopulation.sort((a,b)=> (a.population > b.population ? -1 : 1));
-                countriesOrderPopulation=auxPopulation
+                countriesOrderPopulation=auxPopulation;
+                
             }
             if(orderPopulat==='LOW - HIGH'){
                 auxPopulation.sort((a,b)=>(a.population < b.population ? -1 : 1))
@@ -127,12 +131,13 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 countries:countriesOrderPopulation,
                 orderPopulation:orderPopulat,
+                page:0,
             }
         case PAGE_NEXT:
       
             return{
                 ...state,
-                page:state.page+1
+                page:state.page+1,
                 
             }
         case PAGE_BACK:

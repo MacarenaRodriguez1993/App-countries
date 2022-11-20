@@ -29,6 +29,8 @@ const FilterByContinent = ()=>{
                 filterCountries:event.target.value
             }
         });
+        document.getElementById('orderPopulation').selectedIndex=0;
+        document.getElementById('orderAlphabetical').selectedIndex=0;
     }
 
     return(
@@ -46,8 +48,7 @@ const FilterByContinent = ()=>{
                         })
                     }
                 </select>
-            </label>
-           
+            </label> 
         </>
     );
 }

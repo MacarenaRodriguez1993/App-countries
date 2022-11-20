@@ -22,13 +22,21 @@ const CountryDetails = (props)=>{
             </Link>
             <div className="page">
                 <div className="countryDetails">
-                    <h4>Country Code : {countryDetails.id}</h4>
-                    <h4>Country Name: {countryDetails.name}</h4>
-                    <img className="flagImg" src={countryDetails.flagImage} alt={countryDetails.name} />
-                    <h5>Capital : {countryDetails.capital}</h5>
-                    <h5>Region: {countryDetails.subregion}</h5>
-                    <h5>Area: {countryDetails.area} km2</h5>
-                    <h5>Population: {countryDetails.population}</h5>
+                    <div className="headerDetails">
+                        <h4 id='code'>{countryDetails.id}</h4>
+                        <h4>Country Name: {countryDetails.name}</h4>
+                    </div>
+                    <div className="contentDetails">
+                        <img className="flagDetails" src={countryDetails.flagImage} alt={countryDetails.name} />
+                        <div id='content'>
+                            <h5>Capital : {countryDetails.capital}</h5>
+                            <h5>Region: {countryDetails.subregion}</h5>
+                            <h5>Area: {countryDetails.area} km2</h5>
+                            <h5>Population: {countryDetails.population}</h5>
+                            <button>Activities</button>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div className="activities">
                     <h3>Activities:</h3>

@@ -7,7 +7,6 @@ export const ORDER_POPULATION ='ORDER_POPULATION';
 export const  PAGE_NEXT = 'PAGE_NEXT';
 export const PAGE_BACK='PAGE_BACK';
 
-
 export const getAllCountries = ()=>{
     return function(dispatch){
         fetch('http://localhost:3001/countries/')

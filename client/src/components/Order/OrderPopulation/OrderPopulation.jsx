@@ -6,7 +6,8 @@ const OrderPopulation = ()=>{
 
     const dispatch = useDispatch();
     const handleOrder = (event)=>{
-        dispatch(populationOrder(event.target.value))
+        dispatch(populationOrder(event.target.value));
+        document.getElementById('orderAlphabetical').selectedIndex=0;
     }
     return(
         <>

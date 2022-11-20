@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
+import '../ShowActivities/showActivities.css'
 import { useDispatch, useSelector } from "react-redux";
-import Activity from '../Activity/Activity';
 import {Link} from 'react-router-dom';
 import {getActivities} from '../../../redux/actions/activities';
 
@@ -10,27 +10,45 @@ const ShowActivities = () =>{
 
     useEffect(()=>{
         dispatch(getActivities())
-    })
+    },[dispatch])
+    
     return(
         <div className="home">
             <h3 className="titleActivities">List Activities</h3>
             <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
-                <div className="">
+                <table className="tableActivities">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name Activity</th>
+                            <th>Difficult</th>
+                            <th>Duration (hours)</th>
+                            <th>Season</th>
+                            <th>Actions</th>
+                        </tr>
+                     </thead>
+          
+       
                     {
                         allActivities?.map((act)=> {
-                            return(
-                                <Activity
-                                    key={act.id}
-                                    id={act.id}
-                                    name={act.name}
-                                    difficult={act.difficult}
-                                    duration={act.duration}
-                                    season={act.season}
-                                />
-                            )                
+                            return( 
+                            <tbody>
+                            <tr>
+                                <th>{act.ID}</th>
+                                <th>{act.name}</th>
+                                <th>{act.difficult}</th>
+                                <th>{act.duration}</th>
+                                <th>{act.season}</th>
+                                <th>
+                                    <button id='buttonUpdate'>Edit</button>
+                                    <button id='buttonDelete'>Delete</button>
+                                </th>
+                            </tr>
+                        </tbody>)
+                                          
                         })
                     }
-                </div>
+                </table>
                 </div>
      
     )

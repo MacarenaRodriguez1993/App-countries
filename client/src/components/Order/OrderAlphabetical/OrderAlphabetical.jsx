@@ -9,6 +9,7 @@ const OrderAlphabetical = () =>{
     const dispatch = useDispatch();
     const handleOrder = (event)=>{
         dispatch(alphabeticalOrder(event.target.value))
+        document.getElementById('orderPopulation').selectedIndex=0;
     }
 
     return(
