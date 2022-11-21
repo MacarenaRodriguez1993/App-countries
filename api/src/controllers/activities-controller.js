@@ -22,7 +22,21 @@ const getActivities = async()=>{
 
     }
 }
+
+// function delete activity by id
+const deleteActivity = async(id)=>{
+  
+        const activity = await Activity.destroy({ where: { id } });
+        if(activity>0){
+            return 'Activity deleted'
+        }else{
+            throw new Error('error el id no existe ')
+           
+        }
+   
+}
 module.exports={
     getActivities,
-    addActivity
+    addActivity,
+    deleteActivity
 }
