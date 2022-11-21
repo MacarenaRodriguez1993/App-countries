@@ -1,7 +1,6 @@
 const {Router}=require('express');
 const router =Router();
-const {Activity}=require('../db');
-const  {addActivity, getActivities} = require('../controllers/activities-controller')
+const  {addActivity, getActivities,deleteActivity} = require('../controllers/activities-controller')
 
 //route post activity
 router.post('/',async(req,res)=>{
@@ -24,4 +23,16 @@ router.get('/',async(req,res)=>{
         return res.status(400).json({error:err.message})
     }
 })
+
+//route DELETE activity by ID
+router.delete('/:id', async(req,res)=>{
+    try {
+        const {id}=req.params;
+        await deleteActivity(id);
+        res.status(200).send('Activity deleted sucessfully')
+    } catch (err) {
+        res.status(400).send({error:err.message})
+    }
+})
+
 module.exports = router;

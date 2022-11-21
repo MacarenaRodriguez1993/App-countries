@@ -4,7 +4,7 @@ const {DataTypes}= require('sequelize');
 // exporto modelo para actividad turistica
 module.exports=(sequelize)=>{
     sequelize.define('activity',{
-        ID:{
+        id:{
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
