@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import{useDispatch, useSelector} from 'react-redux';
 import '../countryDetails/countryDetails.css';
 import { getCountryDetails} from '../../redux/actions/countries';
+import {deleteActivity} from '../../redux/actions/activities'
 import { Link } from "react-router-dom";
 
 const CountryDetails = (props)=>{
@@ -20,6 +21,10 @@ const CountryDetails = (props)=>{
         
     }
 
+    const onClick = (id)=>{
+        
+        dispatch(deleteActivity(id))
+    }
     useEffect(()=>{
         dispatch(getCountryDetails(countryId))
     },[dispatch,countryId]);
@@ -72,7 +77,10 @@ const CountryDetails = (props)=>{
                                     <th>{act.difficult}</th>
                                     <th>{act.duration}</th>
                                     <th>{act.season}</th>
-                                    <th><button id='exitActiv'>x</button></th>
+                                    <th>
+                                        <button id='exitActiv' 
+                                            onClick={()=>onClick(act.ID)}>x
+                                        </button></th>
                                     </tr>
                                     </tbody>)               
                                 }

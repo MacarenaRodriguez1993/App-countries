@@ -8,7 +8,7 @@ import {
     PAGE_BACK,
     CLEAR_DETAILS,
 } from "../actions/countries";
-import {GET_ACTIVITIES,FILTER_ACTIVITY} from '../actions/activities'
+import {GET_ACTIVITIES,FILTER_ACTIVITY,DELETE_ACTIVITY} from '../actions/activities'
 
 const initialState ={
     allCountries: [],
@@ -60,7 +60,13 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 activities:action.payload
             }
- 
+        case DELETE_ACTIVITY:
+            const actFilt=state.countryDetails
+            console.log('ola'+actFilt)
+            return{
+                ...state,
+                activities:actFilt
+            }
         case FILTER:
             let filterByCountry=action.payload;
             let allCountries = [...state.allCountries]
