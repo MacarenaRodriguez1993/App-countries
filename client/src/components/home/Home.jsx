@@ -5,7 +5,7 @@ import '../home/home.css'
 import Country from '../../components/country/Country'
 import Filtros from '../Filter/filterByName/filter'
 import{useSelector, useDispatch} from 'react-redux';
-import {getAllCountries} from '../../redux/actions/countries'
+import {getAllCountries,clearDetails} from '../../redux/actions/countries'
 import {getActivities} from '../../redux/actions/activities'
 import FilterByContinent from '../Filter/filterByContinent/FilterByContinent'
 import FilterByActivity from "../Filter/filterByActivity/FilterByActivity";
@@ -23,6 +23,7 @@ const  Home =()=> {
     useEffect(()=>{
         dispatch(getAllCountries());
         dispatch(getActivities())
+        dispatch(clearDetails())
     },[dispatch])
 
     const openActivities = ()=>{

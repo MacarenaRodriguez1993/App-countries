@@ -6,6 +6,7 @@ export const ORDER_ALPHABETICAL='ORDER_ALPHABETICAL';
 export const ORDER_POPULATION ='ORDER_POPULATION';
 export const  PAGE_NEXT = 'PAGE_NEXT';
 export const PAGE_BACK='PAGE_BACK';
+export const CLEAR_DETAILS = 'CLEAR_DETAILS';
 
 export const getAllCountries = ()=>{
     return function(dispatch){
@@ -43,6 +44,15 @@ export const getCountryByName = (name)=>{
                     payload:countryByName
                 })
             })
+    }
+}
+
+export const clearDetails = ()=>{
+    return function(dispatch){
+        return dispatch({
+            type:CLEAR_DETAILS,
+            payload:'',
+        })
     }
 }
 

@@ -5,7 +5,8 @@ import {
     GET_COUNTRY_BY_NAME,
     FILTER,ORDER_ALPHABETICAL,
     ORDER_POPULATION,PAGE_NEXT,
-    PAGE_BACK
+    PAGE_BACK,
+    CLEAR_DETAILS,
 } from "../actions/countries";
 import {GET_ACTIVITIES,FILTER_ACTIVITY} from '../actions/activities'
 
@@ -36,7 +37,12 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 countryDetails:action.payload
             }
-
+        case CLEAR_DETAILS:
+            return{
+                ...state,
+                countryDetails:action.payload
+                    
+            }
         case GET_COUNTRY_BY_NAME:
             return {
                 ...state,
@@ -54,6 +60,7 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 activities:action.payload
             }
+ 
         case FILTER:
             let filterByCountry=action.payload;
             let allCountries = [...state.allCountries]
