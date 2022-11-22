@@ -96,120 +96,121 @@ const CreateActivity = ()=>{
         <div className="home">
             <h3 className="titleActivities">Create Activity for countries</h3>
             <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
-            <form id='formActivity' onSubmit={(event)=> onSubmit(event)}>
-                <label>Activity name </label>
-                <input 
-                    id='name'
-                    type='text' 
-                    name='name' 
-                    value={formActivity.name}
-                    placeholder="ex: senderismo" 
-                    maxLength={25} 
-                    onChange={(event)=>handleChange(event)}
-                    onBlur={handlerBlur}
-                    required
-                />
-                <div className="msjError" >
-                   {
-                    error.name && <p>{error.name}</p>
-                   }
-                </div>
-
-                <label>Difficult </label>
-                <input 
-                    id='difficult'
-                    type='range' 
-                    name='difficult' 
-                    value={formActivity.difficult}
-                    min={1} 
-                    max={5} 
-                    step={1} 
-                    defaultValue={0}
-                    onBlur={handlerBlur}
-                    onChange={handleChange}
-                />
-                <div className="msjError" >
-                   {
-                    error.difficult && <p>{error.difficult}</p>
-                   }
-                </div>
-
-                <label>Duration </label>
-                <input 
-                    id='duration'
-                    type='text' 
-                    name='duration'
-                    placeholder="ex: 1 hours" 
-                    value={formActivity.duration}
-                    onBlur={handlerBlur}
-                    onChange={handleChange}
-                />
-                <div className="msjError" >
-                   {
-                    error.duration && <p>{error.duration}</p>
-                   }
-                </div>
-
-                <label>Season  </label>
-                <select 
-                    id='season'
-                    name="season"
-                    value={formActivity.season}
-                    onBlur={handlerBlur}
-                    onChange={handleChange}>
-                    <option value="Select Season">Select Season</option>
-                    <option value='summer'>Summer</option>
-                    <option value='autumn'>Autumn</option>
-                    <option value='winter'>Winter</option>
-                    <option value='spring'>Spring</option>
-                </select> 
-                <div className="msjError" >
-                   {
-                    error.season && <p>{error.season}</p>
-                   }
-                </div>
-                
-                <label>Add Countries</label>
-                <select 
-                    id='countries'
-                    name='countries'  
-                    value={formActivity.countries}
-                    onChange={(event)=>handleCountries(event)}>
-                    <option value="">Select country</option>
+            <div  id='createActivities'>
+                <form id='formActivity' onSubmit={(event)=> onSubmit(event)}>
+                    <label>Activity name </label>
+                    <input 
+                        id='name'
+                        type='text' 
+                        name='name' 
+                        value={formActivity.name}
+                        placeholder="ex: senderismo" 
+                        maxLength={25} 
+                        onChange={(event)=>handleChange(event)}
+                        onBlur={handlerBlur}
+                        required
+                    />
+                    <div className="msjError" >
                     {
-                        allCountries?.sort((a,b)=>(a.name<b.name ? -1 :1))
-                            .map((country)=>{
+                        error.name && <p>{error.name}</p>
+                    }
+                    </div>
+
+                    <label>Difficult </label>
+                    <input 
+                        id='difficult'
+                        type='range' 
+                        name='difficult' 
+                        value={formActivity.difficult}
+                        min={1} 
+                        max={5} 
+                        step={1} 
+                        defaultValue={0}
+                        onBlur={handlerBlur}
+                        onChange={handleChange}
+                    />
+                    <div className="msjError" >
+                    {
+                        error.difficult && <p>{error.difficult}</p>
+                    }
+                    </div>
+
+                    <label>Duration </label>
+                    <input 
+                        id='duration'
+                        type='text' 
+                        name='duration'
+                        placeholder="ex: 1 hours" 
+                        value={formActivity.duration}
+                        onBlur={handlerBlur}
+                        onChange={handleChange}
+                    />
+                    <div className="msjError" >
+                    {
+                        error.duration && <p>{error.duration}</p>
+                    }
+                    </div>
+
+                    <label>Season  </label>
+                    <select 
+                        id='season'
+                        name="season"
+                        value={formActivity.season}
+                        onBlur={handlerBlur}
+                        onChange={handleChange}>
+                        <option value="Select Season">Select Season</option>
+                        <option value='summer'>Summer</option>
+                        <option value='autumn'>Autumn</option>
+                        <option value='winter'>Winter</option>
+                        <option value='spring'>Spring</option>
+                    </select> 
+                    <div className="msjError" >
+                    {
+                        error.season && <p>{error.season}</p>
+                    }
+                    </div>
+                    
+                    <label>Add Countries</label>
+                    <select 
+                        id='countries'
+                        name='countries'  
+                        value={formActivity.countries}
+                        onChange={(event)=>handleCountries(event)}>
+                        <option value="">Select country</option>
+                        {
+                            allCountries?.sort((a,b)=>(a.name<b.name ? -1 :1))
+                                .map((country)=>{
+                                    return(
+                                        <option key={country.id} value={country.id}>{country.name}</option>
+                                    )
+                                })
+                        }
+                    </select>
+                
+                    <div className="button">
+                        <button type="submit"className="buttonSubmit" >Submit</button>   
+                        <button type="button" className="buttonClear" onClick={handlerClear}>clear</button>   
+                    </div>
+                </form>
+
+                <div className="cardC">
+                    {
+                        allCountries?.filter((country)=> formActivity.countries.includes(country.id))
+                            .map(country=>{
                                 return(
-                                    <option key={country.id} value={country.id}>{country.name}</option>
+                                    <FormCardCountry
+                                        key={country.id}
+                                        id={country.id}
+                                        name={country.name}
+                                        image={country.flagImage}
+                                        state={formActivity}
+                                        setState={setFormActivity}
+                                    />
                                 )
                             })
                     }
-                </select>
-               
-                <div className="button">
-                    <button type="submit"className="buttonSubmit" >Submit</button>   
-                    <button type="button" className="buttonClear" onClick={handlerClear}>clear</button>   
                 </div>
-            </form>
-
-            <div>
-                {
-                    allCountries?.filter((country)=> formActivity.countries.includes(country.id))
-                        .map(country=>{
-                            return(
-                                <FormCardCountry
-                                    key={country.id}
-                                    id={country.id}
-                                    name={country.name}
-                                    image={country.flagImage}
-                                    state={formActivity}
-                                    setState={setFormActivity}
-                                />
-                            )
-                        })
-                }
             </div>
-
         </div>
     );
 }

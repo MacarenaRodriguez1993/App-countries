@@ -1,7 +1,13 @@
 .formCardCountry{
-    width: 250px;
-    border: 2px solid black;
+    width: 200px;
+    border-radius: 1em;
     margin: 0.2em;
+    color: #F2F2F2;
+}
+.headerCardCountry{
+    display: flex;
+    padding-left: 1.6em;
+    padding-top: 0.4em;
 }
 .content{
     text-align: center;
@@ -9,4 +15,12 @@
 .imgFlag{
     width: 80%;
     border-radius: 10px;
+}
+.cardC{
+    width: 40%;
+    margin: 0.5em auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,150px);
+    gap: 2em;
+    justify-content: center;;
 }

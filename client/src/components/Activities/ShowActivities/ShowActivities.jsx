@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import '../ShowActivities/showActivities.css'
 import { useDispatch, useSelector } from "react-redux";
 import {Link} from 'react-router-dom';
-import {getActivities} from '../../../redux/actions/activities';
+import {getActivities,deleteActivity} from '../../../redux/actions/activities';
 
 const ShowActivities = () =>{
     const allActivities = useSelector((state)=>state.activities);
@@ -10,8 +10,11 @@ const ShowActivities = () =>{
 
     useEffect(()=>{
         dispatch(getActivities())
-    },[dispatch])
-    
+    },[dispatch,allActivities])
+    const onClick = (id)=>{
+        alert('Are you sure to delete the walk activity?')
+        dispatch(deleteActivity(id))
+    }
     return(
         <div className="home">
             <h3 className="titleActivities">List Activities</h3>
@@ -34,14 +37,14 @@ const ShowActivities = () =>{
                             return( 
                             <tbody>
                             <tr>
-                                <th>{act.ID}</th>
+                                <th>{act.id}</th>
                                 <th>{act.name}</th>
                                 <th>{act.difficult}</th>
                                 <th>{act.duration}</th>
                                 <th>{act.season}</th>
                                 <th>
                                     <button id='buttonUpdate'>Edit</button>
-                                    <button id='buttonDelete'>Delete</button>
+                                    <button id='buttonDelete'onClick={()=>onClick(act.id)}>Delete</button>
                                 </th>
                             </tr>
                         </tbody>)

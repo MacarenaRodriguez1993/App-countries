@@ -12,12 +12,12 @@ const FormCardCountry = ({id,name,image , state, setState})=>{
 
     return(
         <div className='formCardCountry'>
-            <div >
-                <button onClick={handleClose}>x</button>
+            <div className='headerCardCountry'>
+                <button id='exitActiv' onClick={handleClose}>x</button>
+                <h3>{name}</h3>
             </div>
             <div className='content'>
                 <img className='imgFlag' src={image} alt="" />
-                <h3>{name}</h3>
             </div>
           
         </div>
