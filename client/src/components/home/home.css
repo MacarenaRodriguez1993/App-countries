@@ -1,8 +1,8 @@
 .home{
   /* background-image: url('../../assets/mundo\ 2.jpg'); */
   /* background-image: url('../../assets/mundo_b_n.jpg'); */
-  background-image: url('../../assets/estrellas.jpg');
-
+  /* background-image: url('../../assets/estrellas.jpg'); */
+  background-color: #22325A;;
   background-size: cover;
   background-position: center;
   height: 100vh;
