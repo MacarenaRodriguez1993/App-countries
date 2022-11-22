@@ -1,4 +1,4 @@
-//import axios from "axios";
+import axios from "axios";
 export const CREATE_ACTIVITY ='CREATE_ACTIVITY';
 export const GET_ACTIVITIES='GET_ACTIVITIES';
 export const FILTER_ACTIVITY='FILTER_ACTIVITY';
@@ -34,16 +34,39 @@ export const getActivities = ()=>{
             })
     }
 }
-export const deleteActivity = (id)=>{
-   
-    return  function(dispatch){
+// export const deleteActivity = (id)=>{
+//     return async function(dispatch){
+//         await fetch(`http://localhost:3001/activities/${id}`,{
+//             method:'DELETE',
+//             headers:{
+//                 'Content-type':'application/json',
+//             }
+//         }).then(res=>res.json())
+//         dispatch({
+//             type:DELETE_ACTIVITY,
+//             payload:id
+//         })
+//     }
+// }
+export const deleteActivity = (id) => {
+    return async function (dispatch) {
+      try {
+        //const activity = await axios.delete(`http://localhost:3001/activities/${id}`, id);
+        const activity = await fetch(`http://localhost:3001/activities/${id}`,{
+                       method:'DELETE',
+                       headers:{
+                           'Content-type':'application/json',
+                       }
+                   }).then(res=>res.json())
         return dispatch({
-            type:DELETE_ACTIVITY,
-            payload:id
-        })
-        
-    }
-}
+          type: DELETE_ACTIVITY,
+          payload: activity,
+        });
+      } catch (e) {
+
+      }
+    };
+  };
 export const filterActivity = (payload) => {
     return {
       type: FILTER_ACTIVITY,

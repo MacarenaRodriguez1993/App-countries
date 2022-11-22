@@ -7,6 +7,7 @@
    justify-content: space-around;
    margin: 1em 0.7em;
    color: #D6D9C1;
+   align-items: center;
 }
 .buttonBack{
     background-color: rgb(151, 20, 20);
@@ -59,6 +60,10 @@ h5{
     border-radius: 1em;
     text-align: center;
     display: none;
+}
+#msjNoActiv{
+    display: none;
+    font-size: xx-large;
 }
 .cardActivities{
     width: 50%;

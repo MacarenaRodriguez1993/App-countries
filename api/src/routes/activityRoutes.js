@@ -29,7 +29,7 @@ router.delete('/:id', async(req,res)=>{
     try {
         const {id}=req.params;
         await deleteActivity(id);
-        res.status(200).send('Activity deleted sucessfully')
+        res.status(200).json({msj:'Activity deleted sucessfully'})
     } catch (err) {
         res.status(400).send({error:err.message})
     }

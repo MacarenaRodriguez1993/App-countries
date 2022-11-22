@@ -60,13 +60,19 @@ const rootReducer = (state = initialState, action)=>{
                 ...state,
                 activities:action.payload
             }
+        // case DELETE_ACTIVITY:
+        //     const actFilt=state.countryDetails
+        //     console.log('ola'+actFilt)
+        //     return{
+        //         ...state,
+        //         activities:actFilt
+        //     }
         case DELETE_ACTIVITY:
-            const actFilt=state.countryDetails
-            console.log('ola'+actFilt)
-            return{
+            console.log('payload'+ action.payload.id)
+            return {
                 ...state,
-                activities:actFilt
-            }
+                activities: state.activities.filter((a) => a.id !== action.payload.id),
+            };
         case FILTER:
             let filterByCountry=action.payload;
             let allCountries = [...state.allCountries]

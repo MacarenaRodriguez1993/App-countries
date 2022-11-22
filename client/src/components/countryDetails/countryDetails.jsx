@@ -9,11 +9,13 @@ const CountryDetails = (props)=>{
 
     const dispatch = useDispatch();
     const countryDetails = useSelector(state=>state.countryDetails);
+    const activ=useSelector(state=>state.activities)
     const countryId=props.match.params.id;
 
     const showActivities = ()=>{
         if(countryDetails.activities.length===0){
-           alert('This country has`n activities')
+            const a = document.getElementById('msjNoActiv');
+            a.style.display='block'
         }else{
             const a = document.getElementById('activities');
             a.style.display='block'
@@ -21,13 +23,14 @@ const CountryDetails = (props)=>{
         
     }
 
-    const onClick = (id)=>{
-        
-        dispatch(deleteActivity(id))
-    }
     useEffect(()=>{
         dispatch(getCountryDetails(countryId))
-    },[dispatch,countryId]);
+    },[dispatch,countryId,activ]);
+
+    const onClick = (id)=>{
+        alert('Are you sure to delete the walk activity?')
+        dispatch(deleteActivity(id))
+    }
 
     return (
         <div className="home">
@@ -50,8 +53,12 @@ const CountryDetails = (props)=>{
                         </div>
                     </div>
                 </div>
+                <div id="msjNoActiv">
+                    <p >This country has`n activities</p>
+                </div>
                 <div className="activities" id='activities'>
                     <h4>Activities:</h4>
+                 
                     {
                         <table className="tableActivities" id='activityDetails'>
                             {
@@ -79,7 +86,7 @@ const CountryDetails = (props)=>{
                                     <th>{act.season}</th>
                                     <th>
                                         <button id='exitActiv' 
-                                            onClick={()=>onClick(act.ID)}>x
+                                            onClick={()=>onClick(act.id)}>x
                                         </button></th>
                                     </tr>
                                     </tbody>)               
