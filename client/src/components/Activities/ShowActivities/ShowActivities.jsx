@@ -12,13 +12,13 @@ const ShowActivities = () =>{
         dispatch(getActivities())
     },[dispatch,allActivities])
     const onClick = (id)=>{
-        alert('Are you sure to delete the walk activity?')
+        if(window.confirm(`Are you sure to delete n° ${id} activity?`))
         dispatch(deleteActivity(id))
     }
     return(
         <div className="home">
-            <h3 className="titleActivities">List Activities</h3>
-            <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
+            <h3 className="titleNav">List Activities</h3>
+            <Link to='/home'><button className="buttonBack"> ⬅GO HOME</button></Link>
                 <table className="tableActivities">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@ const ShowActivities = () =>{
                                 <th>{act.season}</th>
                                 <th>
                                     <button id='buttonUpdate'>Edit</button>
-                                    <button id='buttonDelete'onClick={()=>onClick(act.id)}>Delete</button>
+                                    <button id='buttonDelete'onClick={()=>onClick(act.id)}> 🗑️ Delete</button>
                                 </th>
                             </tr>
                         </tbody>)

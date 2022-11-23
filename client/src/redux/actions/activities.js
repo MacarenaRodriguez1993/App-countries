@@ -13,7 +13,7 @@ export const createActivity = (activity) =>{
              },
              body:JSON.stringify(activity) 
          }).then(res=>res.json())
-         
+         console.log('activiti action'+newActivity)
         // const newActivity = await axios.post('http://localhost:3001/activities', activity);
 
         return dispatch({

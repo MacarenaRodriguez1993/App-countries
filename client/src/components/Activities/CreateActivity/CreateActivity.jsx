@@ -10,6 +10,8 @@ import FormCardCountry from "../../FormCardCountry/FormCardCountry";
 const CreateActivity = ()=>{
 
     const allCountries = useSelector((state)=>state.allCountries);
+    const allActivities=useSelector((state)=> state.activities);
+
     const dispatch = useDispatch();
     const [formActivity,setFormActivity] = useState({
         name:'',
@@ -19,44 +21,35 @@ const CreateActivity = ()=>{
         countries:[]
     });
 
-    const validationForm = (formActivity)=>{
-        let errors ={};
-        let regExp=/[A-Za-z0-9ÑñÁáÉéÍíÓóÚúÜü\s]/
-            if(!formActivity.name.trim()){
-                errors.name = 'The Name field is required'
-            }else if(!regExp.test(formActivity.name.trim())){
-                errors.name = 'The name field does not receive special characters'
-            }
+    const [errors,setErrors]=useState({
+        name:''
+    })
+    let nameActivities=allActivities.map(act=>act.name)
+   
+    const validate = (state)=>{
+        let err={};
+        let existingActivity= nameActivities.find(act=> act ===state.name)
+       
+        if(!state.name) err.name='You must enter a name for the activity';
 
-            if(parseInt(formActivity.difficult)===0){
-                errors.difficult = 'The difficulty must be from 1 to 5'
-            }
+        if(existingActivity!==undefined) err.name=`The activity " ${state.name} " was already created`;
 
-            if(!formActivity.duration){
-                errors.duration = 'The duration field is required'
-            }
+        if(state.difficult==='0') err.difficult='You must enter a difficulty for the activity'
 
-            if( formActivity.season===''){
-               errors.season= 'You must enter a station'
-            }else if( formActivity.season==='Select Season'){
-                errors.season= 'You must enter a station'
-             }
+        if(!state.duration) err.duration='You must enter a duration for the activity'
 
-        return errors;
+        if(state.season==='Select Season') err.season = 'You must enter a season for the activity'
+        return err;
     }
-
     const handleChange = (e)=>{
         const{name,value}=e.target;
         setFormActivity({
             ...formActivity,
             [name]:value
-        })
+        });
+        setErrors(validate({...formActivity,[name]:value}))
     }
-    const [error, setError] = useState({});
-    const handlerBlur = (e)=>{
-        handleChange(e);
-        setError(validationForm(formActivity))
-    }
+
     
     const onSubmit = (event) =>{
         event.preventDefault();
@@ -94,7 +87,7 @@ const CreateActivity = ()=>{
 
     return(
         <div className="home">
-            <h3 className="titleActivities">Create Activity for countries</h3>
+            <h3 className="titleNav">Create Activity for countries</h3>
             <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
             <div  id='createActivities'>
                 <form id='formActivity' onSubmit={(event)=> onSubmit(event)}>
@@ -107,12 +100,10 @@ const CreateActivity = ()=>{
                         placeholder="ex: senderismo" 
                         maxLength={25} 
                         onChange={(event)=>handleChange(event)}
-                        onBlur={handlerBlur}
-                        required
                     />
                     <div className="msjError" >
                     {
-                        error.name && <p>{error.name}</p>
+                        errors.name && <p>{errors.name}</p>
                     }
                     </div>
 
@@ -122,16 +113,15 @@ const CreateActivity = ()=>{
                         type='range' 
                         name='difficult' 
                         value={formActivity.difficult}
-                        min={1} 
+                        min={0} 
                         max={5} 
                         step={1} 
                         defaultValue={0}
-                        onBlur={handlerBlur}
                         onChange={handleChange}
                     />
                     <div className="msjError" >
                     {
-                        error.difficult && <p>{error.difficult}</p>
+                        errors.difficult && <p>{errors.difficult}</p>
                     }
                     </div>
 
@@ -142,12 +132,11 @@ const CreateActivity = ()=>{
                         name='duration'
                         placeholder="ex: 1 hours" 
                         value={formActivity.duration}
-                        onBlur={handlerBlur}
                         onChange={handleChange}
                     />
                     <div className="msjError" >
                     {
-                        error.duration && <p>{error.duration}</p>
+                        errors.duration && <p>{errors.duration}</p>
                     }
                     </div>
 
@@ -156,7 +145,6 @@ const CreateActivity = ()=>{
                         id='season'
                         name="season"
                         value={formActivity.season}
-                        onBlur={handlerBlur}
                         onChange={handleChange}>
                         <option value="Select Season">Select Season</option>
                         <option value='summer'>Summer</option>
@@ -166,7 +154,7 @@ const CreateActivity = ()=>{
                     </select> 
                     <div className="msjError" >
                     {
-                        error.season && <p>{error.season}</p>
+                        errors.season && <p>{errors.season}</p>
                     }
                     </div>
                     
@@ -188,7 +176,11 @@ const CreateActivity = ()=>{
                     </select>
                 
                     <div className="button">
-                        <button type="submit"className="buttonSubmit" >Submit</button>   
+                        <button type="submit"className="buttonSubmit" 
+                            disabled={!formActivity.name ||!formActivity.difficult || !formActivity.duration|| !formActivity.season
+                                || errors.name || errors.difficult || errors.duration || errors.season} 
+                            >Submit
+                        </button>   
                         <button type="button" className="buttonClear" onClick={handlerClear}>clear</button>   
                     </div>
                 </form>

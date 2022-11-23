@@ -4,8 +4,8 @@ const { Op } = require("sequelize");
 //const axios =require('axios')
 
 const getCountriesApi= async()=>{
-    try {
-         let requestApi =  await fetch("https://restcountries.com/v3/all")
+    try{
+        let requestApi =  await fetch("https://restcountries.com/v3/all")
             .then(resp=>resp.json())
             const countries = requestApi.map(c=>{
                 return {
@@ -16,28 +16,13 @@ const getCountriesApi= async()=>{
                     capital : c.capital ? c.capital[0] : 'capital does not exist',
                     subregion:c.subregion ? c.subregion : c.region,
                     area:c.area,
-                    population:c.population
+                    population:c.population,
+                    maps: c.maps.googleMaps
                 }
-             })
-            await Country.bulkCreate(countries).then(()=>console.log('Countries data have been saved'))
-            
-        //return res.status(200).send('success')
-        // let requestApi = (await axios.get('https://restcountries.com/v3/all')).data
-        // requestApi = await requestApi?.map(c=> Country.findOrCreate({
-        //     where:{
-        //         id:c.cca3,
-        //         name:c.name.common.toLowerCase(),
-        //         flagImage:c.flags[0],
-        //         continent:c.continents[0],
-        //         capital : c.capital ? c.capital[0] : 'capital does not exist',
-        //         subregion: c.subregion ? c.subregion : c.region,
-        //         area:c.area,
-        //         population:c.population
-        //     }
-        // }));
-
+            })
+        await Country.bulkCreate(countries).then(()=>console.log('Countries data have been saved'))
     } catch (err) {
-        return res.status(400).send('error');
+        return err.message;
     }
 }
 
@@ -54,31 +39,21 @@ const findCountries = async(name)=>{
                 }
             }, {include:[Activity]})
         }else{
-            country = await Country.findAll({
-                include:[Activity]
-                //{
-                    //model:Activity,
-                    // attributes:['name'],
-                    // through: {
-                    //     attributes: [],
-                    // },
-                //}
-            })
+            country = await Country.findAll({include:[Activity]})
         }
+
         return country
     } catch (err) {
-        return res.status(404).json({error:err.message})
+        return err.message;
     }
 }
 
 const getCountryById = async(id)=>{
     try {
-        const country = await  Country.findByPk(id,{
-            include:[Activity]
-        });
+        const country = await  Country.findByPk(id,{include:[Activity]});
         return country;
     } catch (err) {
-        return res.status(400).json({error:err.message})
+        return err.message;
     }
 }
 

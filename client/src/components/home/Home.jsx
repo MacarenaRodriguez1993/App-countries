@@ -38,13 +38,11 @@ const  Home =()=> {
     const countriesForPage=allCountries?.slice(firstIndex,lastIndex)
    
         return( 
-            <>
-           
             <div className="home">
                 <div className="navBar">
-                    <div>
-                        <Link to='/'>
-                            <button className="goBackHome"><h2>Henry Countries</h2></button>
+                    <div >
+                        <Link className="goBackHome" to='/'>
+                            <h3 className="goBackHome"><b>Henry Countries</b></h3>                       
                         </Link>
                     </div>
                    <div>
@@ -93,7 +91,6 @@ const  Home =()=> {
                
                 <Pagination allCountries={allCountries?.length}/> 
             </div>
-            </>
         );
   };
   

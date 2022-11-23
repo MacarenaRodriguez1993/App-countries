@@ -46,7 +46,8 @@ const rootReducer = (state = initialState, action)=>{
         case GET_COUNTRY_BY_NAME:
             return {
                 ...state,
-                countries:action.payload
+                countries:action.payload,
+                page:0
             }
 
         case CREATE_ACTIVITY:

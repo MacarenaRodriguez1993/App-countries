@@ -1,20 +1,22 @@
 .home{
   /* background-image: url('../../assets/mundo\ 2.jpg'); */
   /* background-image: url('../../assets/mundo_b_n.jpg'); */
-  /* background-image: url('../../assets/estrellas.jpg'); */
-  background-color: #22325A;;
-  background-size: cover;
+  background-image: url('../../assets/estrellas.jpg'); 
+  /* background-color: #010002;; */
+  /* background-size: cover;
   background-position: center;
-  height: 100vh;
-  
+  height: fit-content;
+   */
+   background-size: cover;
+   height: 120vh;
 }
 .home_countries{
   display: flex;
   margin-top: 2em;
 }
 .navBar{
-  background-color: #0F1140;
-  color: #D6D9C1;
+  background-color: #4F7B8C;
+  color: #D9B07E;
   padding: 0.4em;
   align-items: center;
   display: flex;
@@ -36,15 +38,16 @@ button{
   padding: 0.2em 0.7em; 
 }
 .butActiv{
-  color:#0F1140;
+  color: #D9B07E;
   padding: 0.2em 0.4em;
-  background-color: #d6d9c1e3;
+  background-color: #4F7B8C;
 }
 .goBackHome{
-  color: #D6D9C1;
+  color: #D9B07E;
   background: none;
   padding: 0;
-  margin-right: 8em;
+  font-size: x-large;
+  text-decoration: none;
 }
 .activ{
   display: grid;
@@ -52,7 +55,7 @@ button{
 
 }
 #bubble{
-  background-color: #0F1140;
+  background-color: #4F7B8C;
   display: none;
   z-index: 1;
   top:100%;

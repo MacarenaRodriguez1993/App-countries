@@ -1,11 +1,11 @@
-.titleActivities{
+.titleNav{
     margin: 0;
     padding-top:0.4em;
     font-size: xx-large;
     margin-bottom: 0;
     text-align: center;
-    color:#F2F2F2;
-    background-color: #0F1140;
+    color:#D9B07E;
+    background-color: #4F7B8C;
 }
 
 form{
@@ -16,7 +16,7 @@ form{
     display: flex;
     flex-direction: column;
     /* backdrop-filter: blur(10px) */
-    background-color: #0f1140a5; 
+    background-color: #4f7b8c52; 
 }
 label,input,select,option{
     font-size: large;
@@ -35,11 +35,14 @@ label,input,select,option{
 }
 .buttonSubmit{
     margin: auto;
-    background-color: #0F1140;
+    background-color: #d8a15e;
 }
-
+.buttonSubmit:disabled{
+    background-color: #d8a15e57;
+    box-shadow: none;
+}
 .buttonClear{
-    background-color: rgb(15, 93, 54);
+    background-color: rgb(73, 181, 127);
 }
 .msjError{
     background-color: rgba(221, 26, 26, 0.616);

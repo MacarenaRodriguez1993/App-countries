@@ -8,7 +8,7 @@ const addActivity = async(body)=>{
         await newActivity.addCountries(countries)
         return newActivity;
     } catch (err) {
-        console.log(err)
+        return err.message;
     }
 }
 
@@ -18,8 +18,7 @@ const getActivities = async()=>{
         let find = await Activity.findAll();
         return find;
     } catch (err) {
-        return res.status(400).json({error:err.message})
-
+        return err.message;
     }
 }
 
@@ -31,7 +30,6 @@ const deleteActivity = async(id)=>{
             return 'Activity deleted'
         }else{
             throw new Error('error el id no existe ')
-           
         }
    
 }

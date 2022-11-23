@@ -1,6 +1,6 @@
 .card{
     text-align: center;
-    border: 1px solid #F2F2F2;
+    border: 1px solid #D9B07E;
     border-radius: 10px;
     /* backdrop-filter: blur(100px); */
     
@@ -13,7 +13,7 @@
     border-radius: 1em;
 }
 .card:hover{
-    box-shadow: 3px 3px #05181c;
+    box-shadow: 3px 3px #4F7B8C;
     transition: 0.5ms;
 }
 h3, img,p{
@@ -23,5 +23,5 @@ h3, img,p{
 }
 .click{
     text-decoration: none;
-    color: #F2F2F2;
+    color: #D9B07E;
 }

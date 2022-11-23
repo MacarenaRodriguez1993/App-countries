@@ -1,12 +1,9 @@
-.prueba{
-    background-color: coral;
-    height: 100vh;
-}
+
 .page{
    display: flex; 
    justify-content: space-around;
    margin: 1em 0.7em;
-   color: #D6D9C1;
+   color: #D9B07E;
    align-items: center;
 }
 .buttonBack{
@@ -14,11 +11,12 @@
     padding: 0.2em 0.6em;
     font-size: larger;
     margin-top: 2em;
+    color: #D9B07E;
 }
 .countryDetails{
     width: 40%;
     height: 40%;
-    border: 2px solid #D6D9C1;
+    border: 2px solid #D9B07E;
     margin: 2.4em 0;
     text-align: center;
     font-size: large;
@@ -34,7 +32,7 @@
     padding: 0.5em;
     font-size: medium;
     border-radius: 100%;
-    background-color: #D6D9C1;
+    background-color: #D9B07E;
     color: #0F1140;   
 }
 #content{

@@ -4,11 +4,12 @@ const  {addActivity, getActivities,deleteActivity} = require('../controllers/act
 
 //route post activity
 router.post('/',async(req,res)=>{
-    try {
-        
+    try {     
         const newActivity = await addActivity(req.body);
+        if(typeof newActivity==='string') throw new Error(newActivity)
         return res.status(201).send(newActivity)
     } catch (err) {
+        console.log(err.message)
         return res.status(400).json({error:err.message})
     }
 })

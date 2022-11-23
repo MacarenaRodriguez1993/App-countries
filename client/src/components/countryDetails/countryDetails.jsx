@@ -34,7 +34,7 @@ const CountryDetails = (props)=>{
 
     return (
         <div className="home">
-            <h3 className="titleActivities"> {countryDetails.name} Details </h3>
+            <h3 className="titleNav"> {countryDetails.name} Details </h3>
             <Link to='/home'><button className="buttonBack"> ← GO HOME</button></Link>
             <div className="page">
                 <div className="countryDetails">
