@@ -38,12 +38,14 @@ const findCountries = async(name)=>{
                     }
                 }
             }, {include:[Activity]})
+            if(country.length===0)  return 'Country Not Fount'
         }else{
             country = await Country.findAll({include:[Activity]})
         }
 
         return country
     } catch (err) {
+
         return err.message;
     }
 }

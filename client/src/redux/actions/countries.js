@@ -8,9 +8,11 @@ export const  PAGE_NEXT = 'PAGE_NEXT';
 export const PAGE_BACK='PAGE_BACK';
 export const CLEAR_DETAILS = 'CLEAR_DETAILS';
 
+//const apiURL = 'https://appcountries-api.up.railway.app';
+const apiURL = 'http://localhost:3001';
 export const getAllCountries = ()=>{
     return function(dispatch){
-        fetch('http://localhost:3001/countries/')
+        fetch(`${apiURL}/countries/`)
             .then(resp => resp.json())
             .then(countries=>{
                 dispatch({
@@ -23,7 +25,7 @@ export const getAllCountries = ()=>{
 
 export const getCountryDetails= (id) =>{
     return function(dispatch){
-        fetch(`http://localhost:3001/countries/${id}`)
+        fetch(`${apiURL}/countries/${id}`)
             .then(resp => resp.json())
             .then(countryDetails=>{
                 dispatch({
@@ -36,7 +38,7 @@ export const getCountryDetails= (id) =>{
 
 export const getCountryByName = (name)=>{
     return async function(dispatch){
-        await fetch(`http://localhost:3001/countries?name=${name}`)
+        await fetch(`${apiURL}/countries?name=${name}`)
             .then(resp=>resp.json())
             .then(countryByName=>{
                 dispatch({
