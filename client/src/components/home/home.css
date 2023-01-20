@@ -1,23 +1,23 @@
-.error{
-  color: #D9B07E;
+.error {
+  color: #d9b07e;
   width: 100%;
   margin: auto;
   text-align: center;
 }
-.home_countries{
+.home_countries {
   display: flex;
   margin-top: 2em;
 }
-.navBar{
-  background-color: #4F7B8C;
-  color: #D9B07E;
+.navBar {
+  background-color: #4f7b8c;
+  color: #d9b07e;
   padding: 0.4em;
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.filter{
+.filter {
   height: fit-content;
   width: 100%;
   /* background-color: rgba(70, 43, 226, 0.251); */
@@ -27,53 +27,52 @@
   justify-content: center;
 }
 
-button{
+button {
   margin: 0 1.5em;
-  padding: 0.2em 0.7em; 
+  padding: 0.2em 0.7em;
 }
-.butActiv{
-  color: #D9B07E;
+#butActiv {
+  color: #d9b07e;
   padding: 0.2em 0.4em;
-  background-color: #4F7B8C;
+  background-color: #4f7b8c;
 }
-.goBackHome{
-  color: #D9B07E;
+.goBackHome {
+  color: #d9b07e;
   background: none;
   padding: 0;
   font-size: x-large;
   text-decoration: none;
 }
-.activ{
+.activ {
   display: grid;
   position: relative;
-
 }
-#bubble{
-  background-color: #4F7B8C;
+#bubble {
+  background-color: #4f7b8c;
   display: none;
   z-index: 1;
-  top:100%;
+  top: 100%;
   padding: 0.4em 0;
   border-radius: 1em;
 }
-.createOrShow{
+.createOrShow {
   font-size: large;
   margin-bottom: 0.2em;
-  padding: 0.6em ;
+  padding: 0.6em;
 }
-h2{
+h2 {
   padding: 0;
   margin: 0 -1em;
-  font-size:xx-large;
+  font-size: xx-large;
 }
-Link{
+Link {
   padding-left: 5em;
 }
-.countryCard{
+.countryCard {
   width: 95%;
   margin: 0.5em auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill,200px);
+  grid-template-columns: repeat(auto-fill, 200px);
   gap: 2em;
   justify-content: center;
 }
