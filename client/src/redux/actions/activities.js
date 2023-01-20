@@ -8,8 +8,8 @@ export const DELETE_ACTIVITY_OF_COUNTRY = "DELETE_ACTIVITY_OF_COUNTRY";
 export const ERRORA = "ERROR";
 
 //const apiURL = 'https://appcountries-api.up.railway.app';
-const apiURL = "http://localhost:3001";
-//const apiURL = "https://app-countries.up.railway.app";
+//const apiURL = 'http://localhost:3001'
+const apiURL = "https://app-countries.up.railway.app";
 
 export const createActivity = (activity) => {
   return async function (dispatch) {
