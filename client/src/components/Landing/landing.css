@@ -17,13 +17,25 @@
   text-align: center;
   font-size: large;
 }
-#initial {
+button {
+  padding: 0.8em;
+  border: none;
+  border-radius: 10px;
+  background-color: #d9b07e;
+  color: #010002;
+  font-size: x-large;
+  text-align: center;
+}
+button:hover {
+  background-color: #daa86a;
+  color: #010002;
+  box-shadow: 4px 4px #4f7b8c;
+  transition: 0.5s;
+}
+.initial {
   padding: 0.5em 1em;
   cursor: pointer;
-  background-color: #d9b07e;
-  font-size: x-large;
-  color: #0d232b;
 }
 .initial:hover {
-  box-shadow: 2px 2px #3b36ce2e;
+  box-shadow: 2px 2px #010002;
 }
