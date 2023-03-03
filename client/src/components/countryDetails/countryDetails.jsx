@@ -23,7 +23,7 @@ const CountryDetails = (props) => {
 
   useEffect(() => {
     dispatch(getCountryDetails(countryId));
-  }, [dispatch, countryId, activ, countryDetails.activities]);
+  }, [dispatch, countryId]);
 
   return (
     <div className="home">
@@ -83,6 +83,7 @@ const CountryDetails = (props) => {
                     <th>Difficult</th>
                     <th>Duration (hours)</th>
                     <th>Season</th>
+                    <th>Detalles</th>
                   </tr>
                 </thead>
               }
@@ -95,6 +96,9 @@ const CountryDetails = (props) => {
                       <th>{act.difficult}</th>
                       <th>{act.duration}</th>
                       <th>{act.season}</th>
+                      <th>
+                        <button className="btn btn-success">Detalles</button>
+                      </th>
                     </tr>
                   </tbody>
                 );
